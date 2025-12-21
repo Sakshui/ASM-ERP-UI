@@ -1,0 +1,62 @@
+@import "./palette.css";
+
+.table-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  background: #fafafa;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.table td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.table tr:hover {
+  background: #f9fbfc;
+  cursor: pointer;
+}
+
+/* Status badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge.ACCEPTED {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.badge.IN_PROGRESS {
+  background: #fff8e1;
+  color: #f9a825;
+}
+
+.badge.REPAIRED {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.badge.RETURNED {
+  background: #ede7f6;
+  color: #5e35b1;
+}

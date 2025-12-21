@@ -1,0 +1,17 @@
+@import "./palette.css";
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.page {
+  padding: 24px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}

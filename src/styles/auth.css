@@ -1,0 +1,144 @@
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.auth-card {
+  width: 350px;
+  padding: 30px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Login page signup text */
+
+.auth-footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #475569;
+}
+
+.auth-footer span,
+.auth-footer a {
+  color: #354f52;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.auth-footer span:hover,
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   AUTH PAGES (LOGIN + SIGNUP)
+================================ */
+
+/* Full page background */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #eef2f7 100%
+  );
+  padding: 20px;
+}
+
+/* Card */
+.auth-card {
+  width: 420px;
+  background: #ffffff;
+  padding: 36px 32px;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Heading */
+.auth-card h2 {
+  margin-bottom: 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Subtext */
+.auth-subtext {
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Inputs */
+.auth-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.auth-card input::placeholder {
+  color: #94a3b8;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #354f52;
+  box-shadow: 0 0 0 3px rgba(53, 79, 82, 0.15);
+}
+
+/* Primary button */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 12px;
+  background: #354f52;
+  color: #ffffff;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.primary-btn:hover {
+  background: #2f3e46;
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+/* Footer text */
+.auth-footer {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* Login / Signup link */
+.auth-footer span {
+  color: #354f52;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.auth-footer span:hover {
+  text-decoration: underline;
+}

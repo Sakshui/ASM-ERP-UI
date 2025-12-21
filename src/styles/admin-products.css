@@ -1,0 +1,158 @@
+.products-page {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* HEADER */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: var(--green-dark);
+}
+
+/* ADD BUTTON */
+/* ADMIN BUTTONS – ISOLATED & SAFE */
+.admin-add-btn,
+.admin-primary-btn {
+  background-color: #354f52;;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.admin-add-btn:hover,
+.admin-primary-btn:hover {
+  background-color: #354f52;
+  transform: translateY(-1px);
+}
+
+
+/* EMPTY STATE */
+.empty-state {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 60px;
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+/* PRODUCTS TABLE */
+.products-table {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* HEADER */
+.table-header {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ROW */
+.table-row {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s ease;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background: #f9fafb;
+}
+
+/* LOW STOCK HIGHLIGHT */
+.table-row.low-stock {
+  background: #fff7ed;
+}
+
+/* PRODUCT CELL */
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.product-cell img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.product-cell span {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* WHATSAPP LINK */
+.whatsapp-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.whatsapp-link:hover {
+  background: #bbf7d0;
+}
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+/* BADGE STATES */
+.badge.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge.danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* EMPTY STATE (if not already styled) */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6b7280;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}

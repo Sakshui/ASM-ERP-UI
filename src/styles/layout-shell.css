@@ -1,0 +1,60 @@
+@import "./palette.css";
+
+.app-shell {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-light);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: var(--primary-dark);
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar a {
+  color: #cfd8dc;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+/* Main */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.app-content {
+  padding: 24px;
+  overflow-y: auto;
+}

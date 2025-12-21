@@ -1,0 +1,13 @@
+/* palette.css */
+:root {
+  --bg-light: #f4f7f8;
+  --card-bg: #ffffff;
+  --primary-dark: #2f3e46;
+  --primary: #354f52;
+  --accent-blue: #4db6ac;
+  --accent-green: #9ccc65;
+  --accent-red: #ef5350;
+  --text-dark: #263238;
+  --text-muted: #78909c;
+  --border-light: #e0e0e0;
+}
