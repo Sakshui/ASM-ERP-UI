@@ -133,3 +133,138 @@
 .whatsapp-btn:hover {
   background: #1ebc59;
 }
+/* CATALOG HEADER */
+.catalog-header {
+  background: linear-gradient(
+    135deg,
+    #6c5ce7 0%,
+    #7c6ee6 50%,
+    #a29bfe 100%
+  );
+  padding: 5px 24px 90px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: #37415133 0px 5px 5px;
+}
+
+/* soft decorative background */
+.catalog-header::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+/* SECOND soft shape (left bottom) */
+.catalog-header::before {
+  content: "";
+  position: absolute;
+  bottom: -160px;
+  left: -160px;
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+/* subtle grain / texture */
+.catalog-header-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.catalog-header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* heading */
+.catalog-header h1 {
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.catalog-header h1 span {
+  color: #fde68a; /* soft highlight */
+}
+
+/* subtitle */
+.catalog-header p {
+  font-size: 17px;
+  color: #f3f4f6;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+/* HEADER RIBBON */
+.catalog-ribbon {
+  position: absolute;
+  bottom: 28px; /* 👈 overlaps header without increasing height */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 14px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+
+/* Home link */
+.ribbon-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6c5ce7;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.ribbon-link:hover {
+  background: #f4f3ff;
+}
+
+/* Filter select */
+.ribbon-select {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  background: #ffffff;
+  cursor: pointer;
+}
+/* Search input in ribbon */
+.ribbon-search {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  width: 180px;
+  color: #374151;
+}
+
+.ribbon-search::placeholder {
+  color: #9ca3af;
+}

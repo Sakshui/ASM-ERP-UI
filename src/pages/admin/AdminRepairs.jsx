@@ -1,4 +1,3 @@
-import AppLayout from "../../layout/AppLayout";
 import "../../styles/table.css";
 import api from "../../api/axios";
 import { useEffect, useState } from "react";
@@ -16,7 +15,7 @@ const AdminRepairs = () => {
   }, []);
 
   return (
-    <AppLayout>
+    <>
       <div
         style={{
           display: "flex",
@@ -87,7 +86,7 @@ const AdminRepairs = () => {
           </tbody>
         </table>
       </div>
-    </AppLayout>
+    </>
   );
 };
 

@@ -12,7 +12,10 @@ import CustomerLanding from "./pages/customer/CustomerLanding";
 import ProductCatalog from "./pages/customer/ProductCatalog";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminAddProduct from "./pages/admin/AdminAddProduct";
-
+import AdminEditProduct from "./pages/admin/AdminEditProduct";
+import AdminAddSale from "./pages/admin/AdminAddSale";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AppLayout from "./layout/AppLayout";
 
 
 const HomeRedirect = () => {
@@ -32,59 +35,23 @@ function App() {
 
         {/* ADMIN */}
         <Route
-          path="/admin"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/repairs"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <RepairList />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/repairs/new"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <CreateRepair />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/repairs/:id"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <RepairDetail />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* ADMIN PRODUCTS */}
-        <Route
-          path="/admin/products"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <AdminProducts />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/products/new"
-          element={
-            <ProtectedRoute role="ADMIN">
-              <AdminAddProduct />
-            </ProtectedRoute>
-          }
-        />
+    path="/admin"
+    element={
+      <ProtectedRoute role="ADMIN">
+        <AppLayout />
+      </ProtectedRoute>
+    }
+  >
+    <Route index element={<AdminDashboard />} />
+    <Route path="repairs" element={<RepairList />} />
+    <Route path="repairs/new" element={<CreateRepair />} />
+    <Route path="repairs/:id" element={<RepairDetail />} />
+    <Route path="products" element={<AdminProducts />} />
+    <Route path="products/new" element={<AdminAddProduct />} />
+    <Route path="products/:id" element={<AdminEditProduct />} />
+    <Route path="users" element={<AdminUsers />} />
+    <Route path="sales/new" element={<AdminAddSale />} />
+  </Route>
 
 
         {/* CUSTOMER */}

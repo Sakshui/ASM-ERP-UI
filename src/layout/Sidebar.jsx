@@ -7,12 +7,8 @@ const Sidebar = () => {
 
       <NavLink to="/admin">Dashboard</NavLink>
       <NavLink to="/admin/repairs">Repairs</NavLink>
-
-      {/* NEW */}
       <NavLink to="/admin/products">Products</NavLink>
-
-      <NavLink to="/admin/inventory">Inventory</NavLink>
-      <NavLink to="/admin/sales">Sales</NavLink>
+      <NavLink to="/admin/sales/new">Add Sale</NavLink>
       <NavLink to="/admin/users">Users</NavLink>
     </div>
   );

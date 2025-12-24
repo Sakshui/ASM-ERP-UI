@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AppLayout from "../../layout/AppLayout";
 import api from "../../api/axios";
 import "../../styles/repair-detail.css";
 
@@ -50,7 +49,7 @@ const RepairDetail = () => {
     repair.status === "REPAIRED" || repair.status === "RETURNED";
 
   return (
-    <AppLayout>
+    <>
       <div className="repair-detail-page">
 
         {/* HEADER */}
@@ -172,7 +171,7 @@ const RepairDetail = () => {
         </div>
 
       </div>
-    </AppLayout>
+    </>
   );
 };
 

@@ -12,6 +12,9 @@ const CONTACT_CATEGORIES = [
 
 const ProductCatalog = () => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+
 
   useEffect(() => {
     api.get("/api/products") // public later, admin for now
@@ -19,7 +22,7 @@ const ProductCatalog = () => {
   }, []);
 
   const getImageUrl = (imageUrl) =>
-    imageUrl
+    imageUrlpro
       ? `http://localhost:8080${imageUrl}`
       : "/placeholder.png";
 
@@ -27,17 +30,66 @@ const ProductCatalog = () => {
     <main className="catalog-page">
 
       {/* HERO */}
-      <section className="catalog-hero">
-        <h1>Our Products</h1>
-        <p>
-          Sewing machines, motors, spare parts, and tailoring accessories.
-          Genuine products with reliable service.
-        </p>
+      {/* CATALOG HEADER */}
+      <section className="catalog-header">
+        <div className="catalog-header-content">
+          <h1>
+            <span>Explore Our Products</span>
+          </h1>
+
+          <p>
+            Sewing machines, motors, spare parts, and tailoring accessories —
+            selected for quality and durability.
+          </p>
+        </div>
+
+        {/* HEADER RIBBON */}
+        <div className="catalog-ribbon">
+          <a href="/customer" className="ribbon-link">
+            Home
+          </a>
+
+          <select
+            className="ribbon-select"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">All Categories</option>
+            <option value="SPARE_PARTS">Spare Parts</option>
+            <option value="ACCESSORIES">Accessories</option>
+            <option value="OIL">Oil</option>
+            <option value="MOTORS">Motors</option>
+            <option value="SEWING_MACHINE_TOP">Machine Top</option>
+            <option value="STAND">Stand</option>
+            <option value="TABLE">Table</option>
+          </select>
+
+          <input
+            type="text"
+            className="ribbon-search"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
       </section>
+
 
       {/* GRID */}
       <section className="catalog-grid">
-        {products.map(product => (
+        {products
+          .filter(product => {
+            const matchesCategory =
+              !category || product.category === category;
+
+            const matchesSearch =
+              product.name.toLowerCase().includes(search.toLowerCase());
+
+            return matchesCategory && matchesSearch;
+          })
+          .map(product => (
+
           <div key={product.id} className="product-card">
 
               <img
@@ -79,19 +131,16 @@ const ProductCatalog = () => {
                   )}
 
                   {/* CHAT WITH BUSINESS */}
-                  {product.contactAllowed ? (
-  <a
-    href={product.whatsappLink}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="whatsapp-btn"
-  >
-    Chat with Business
-  </a>
-) : (
-  <span className="product-price">₹ {product.unitPrice}</span>
-)}
-
+                  {product.contactAllowed && (
+                    <a
+                      href={product.whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="whatsapp-btn"
+                    >
+                      Chat with Business
+                    </a>
+                  )}
 
                 </div>
               </div>

@@ -156,3 +156,46 @@
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #f6f7fb;
+}
+.clickable-row:hover .product-cell span {
+  color: #6c5ce7;
+}
+.badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-left: 12px;
+}
+/* Admin filter dropdown */
+.admin-filter {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  cursor: pointer;
+
+  /* 🔥 remove default browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* spacing consistency */
+  min-width: 130px;
+}
+.admin-filter:focus {
+  outline: none;
+  border-color: #1e3529;
+  box-shadow: 0 0 0 2px rgba(53, 79, 82, 0.15);
+}

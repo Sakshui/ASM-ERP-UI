@@ -1,4 +1,3 @@
-import AppLayout from "../../layout/AppLayout";
 import "../../styles/add-product.css";
 import api from "../../api/axios";
 import { useState } from "react";
@@ -68,7 +67,7 @@ const AdminAddProduct = () => {
 
 
   return (
-    <AppLayout>
+    <>
       <div className="add-product-page">
         <div className="page-header">
           <h1>Add Product</h1>
@@ -103,6 +102,15 @@ const AdminAddProduct = () => {
               <option value="STAND">Stand</option>
               <option value="TABLE">Table</option>
             </select>
+
+            <label>Description</label>
+            <textarea
+              name="description"
+              placeholder="Enter product"
+              value={form.description}
+              onChange={handleChange}
+              rows={4}
+            />
           </div>
 
           {/* IMAGE */}
@@ -185,7 +193,7 @@ const AdminAddProduct = () => {
           </div>
         </form>
       </div>
-    </AppLayout>
+    </>
   );
 };
 

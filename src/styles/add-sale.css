@@ -1,0 +1,65 @@
+/* PAGE */
+.add-sale-page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* TITLE */
+.add-sale-page h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1f2937;
+}
+
+/* FORM */
+.sale-form {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* LABELS */
+.sale-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* INPUTS */
+.sale-form input,
+.sale-form select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+}
+
+.sale-form input:focus,
+.sale-form select:focus {
+  border-color: #16a34a; /* green */
+}
+
+/* BUTTON */
+.sale-form button {
+  margin-top: 10px;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sale-form button:hover {
+  background: #15803d;
+}

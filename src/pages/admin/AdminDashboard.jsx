@@ -1,4 +1,3 @@
-import AppLayout from "../../layout/AppLayout";
 import "../../styles/dashboard.css";
 import api from "../../api/axios";
 import { useEffect, useState } from "react";
@@ -9,44 +8,48 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/api/admin/dashboard/summary")
+    api
+      .get("/api/admin/dashboard/summary")
       .then(res => setSummary(res.data));
   }, []);
 
   if (!summary) return null;
 
   return (
-    <AppLayout>
+    <>
       <h1>Dashboard</h1>
 
       <div className="dashboard-grid">
+
+        {/* ACCEPTED */}
         <div
           className="card clickable"
-          onClick={() => navigate("/admin/repairs")}
+          onClick={() => navigate("/admin/repairs?status=ACCEPTED")}
         >
-          <div className="card-title">Total Repairs</div>
-          <div className="card-value">{summary.totalRepairs}</div>
+          <div className="card-title">Pending Repairs</div>
+          <div className="card-value">{summary.pendingRepairs}</div>
         </div>
 
+        {/* REPAIRED */}
         <div
           className="card clickable"
-          onClick={() => navigate("/admin/repairs")}
+          onClick={() => navigate("/admin/repairs?status=REPAIRED")}
         >
-          <div className="card-title">Repairs in Progress</div>
-          <div className="card-value">{summary.inProgressRepairs}</div>
+          <div className="card-title">Pending Returns</div>
+          <div className="card-value">{summary.repairedRepairs}</div>
         </div>
 
-        <div className="card">
+        {/* LOW STOCK */}
+        <div
+          className="card clickable"
+          onClick={() => navigate("/admin/products?filter=low-stock")}
+        >
           <div className="card-title">Low Stock</div>
           <div className="card-value">{summary.lowStockProducts}</div>
         </div>
 
-        <div className="card">
-          <div className="card-title">Today Revenue</div>
-          <div className="card-value">₹ {summary.todayRevenue}</div>
-        </div>
       </div>
-    </AppLayout>
+    </>
   );
 };
 

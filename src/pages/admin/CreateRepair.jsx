@@ -86,53 +86,81 @@ const CreateRepair = () => {
         >
 
           {/* Customer & Machine */}
-<div style={{ marginBottom: "32px" }}>
-  <h3>Customer & Machine</h3>
+          <div style={{ marginBottom: "32px" }}>
+            <h3>Customer & Machine</h3>
 
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "20px",
-      marginTop: "12px",
-    }}
-  >
-    <input
-      name="customerPhone"
-      placeholder="Customer Mobile Number"
-      value={form.customerPhone}
-      onChange={handleChange}
-      required
-    />
+            {/* TWO COLUMNS */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                columnGap: "40px",
+                rowGap: "16px",
+                alignItems: "center",
+              }}
+            >
+              {/* Mobile */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "120px auto",
+                  columnGap: "12px",
+                  alignItems: "center",
+                }}
+              >
+                <label>Mobile no.</label>
+                <input
+                  name="customerPhone"
+                  placeholder="Customer Mobile Number"
+                  style={{ width: "260px" }}
+                  value={form.customerPhone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-    <input
-      name="customerName"
-      placeholder="Customer Name"
-      value={form.customerName}
-      onChange={handleChange}
-      required
-    />
-  </div>
+              {/* Name */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "120px auto",
+                  columnGap: "12px",
+                  alignItems: "center",
+                }}
+              >
+                <label>Name</label>
+                <input
+                  name="customerName"
+                  placeholder="Customer Name"
+                  style={{ width: "260px" }}
+                  value={form.customerName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-  {/* Machine Name */}
-  <input
-    style={{ marginTop: "16px", width: "100%" }}
-    name="machineName"
-    placeholder="Machine Name (e.g. Singer Sewing Machine)"
-    value={form.machineName}
-    onChange={handleChange}
-    required
-  />
+            {form.customerPhone && (
+              <p style={{ color: "#f97316", marginTop: "8px", fontSize: "14px" }}>
+                New customer will be created if not found
+              </p>
+            )}
+          </div>
 
-  {form.customerPhone && (
-    <p style={{ color: "#f97316", marginTop: "8px", fontSize: "14px" }}>
-      New customer will be created if not found
-    </p>
-  )}
-</div>
 
 
           {/* Issue */}
+          {/* Machine Name */}
+          <label>Machine Name</label>
+          <input
+            style={{ marginTop: "8px", width: "50%", marginLeft: "15px" }}
+            name="machineName"
+            placeholder="Machine Name (e.g. Singer Sewing Machine)"
+            value={form.machineName}
+            onChange={handleChange}
+            required
+          />
+
           <div style={{ marginBottom: "32px" }}>
             <h3>Issue Description</h3>
 

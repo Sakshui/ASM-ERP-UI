@@ -58,6 +58,8 @@ const CustomerLanding = () => {
         </div>
       </section>
 
+      <h1>about us and owner section</h1>
+
 
       {/* SERVICES */}
       <section className="services-section">

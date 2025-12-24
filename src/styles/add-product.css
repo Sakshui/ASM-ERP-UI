@@ -104,3 +104,38 @@
 .secondary-btn:hover {
   background: #e2efea;
 }
+.product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Space between every field */
+.product-form label {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* IMPORTANT: textarea height */
+.product-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus {
+  border-color: #137e5b;
+  outline: none;
+}
