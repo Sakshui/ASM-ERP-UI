@@ -23,10 +23,11 @@ const AdminEditProduct = () => {
     stockQuantity: "",
     restockThreshold: "",
     whatsappLink: "",
-    imageUrl: "", 
+    imageUrl: "",
   });
 
   const [image, setImage] = useState(null);
+  const [editMode, setEditMode] = useState(false); // 🔥 key
 
   useEffect(() => {
     api.get(`/api/admin/products/${id}`).then(res => {
@@ -47,7 +48,7 @@ const AdminEditProduct = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const data = {
@@ -65,8 +66,6 @@ const AdminEditProduct = () => {
     };
 
     const fd = new FormData();
-
-    // 🔥 THIS IS WHAT YOU WERE MISSING
     fd.append(
       "data",
       new Blob([JSON.stringify(data)], { type: "application/json" })
@@ -81,123 +80,142 @@ const AdminEditProduct = () => {
     navigate("/admin/products");
   };
 
-
   return (
-    <>
-      <div className="add-product-page">
-        <h1>Edit Product</h1>
+    <div className="add-product-page">
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h1>Product Details</h1>
 
-        <form className="product-form" onSubmit={handleSubmit}>
-
-          <label>Product Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Product Description</label>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-          />
-
-          <label>Category</label>
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            required
+        {!editMode ? (
+          <button
+            className="admin-primary-btn" style={{ height: "43px" }}
+            onClick={() => setEditMode(true)}
           >
-            <option value="">Select Category</option>
-            <option value="SPARE_PARTS">Spare Parts</option>
-            <option value="ACCESSORIES">Accessories</option>
-            <option value="OIL">Oil</option>
-            <option value="MOTORS">Motors</option>
-            <option value="SEWING_MACHINE_TOP">Machine Top</option>
-            <option value="STAND">Stand</option>
-            <option value="TABLE">Table</option>
-          </select>
+            Edit Product
+          </button>
+        ) : (
+          <button
+            className="admin-primary-btn" style={{ height: "43px" }}
+            onClick={() => setEditMode(false)}
+          >
+            Cancel
+          </button>
+        )}
+      </div>
 
-          <label>Stock Quantity</label>
-          <input
-            type="number"
-            name="stockQuantity"
-            value={form.stockQuantity}
-            onChange={handleChange}
-            required
-          />
+      <form className="product-form" onSubmit={handleSubmit}>
 
-          <label>Restock Threshold</label>
-          <input
-            type="number"
-            name="restockThreshold"
-            value={form.restockThreshold}
-            onChange={handleChange}
-            required
-          />
+        <label>Product Name</label>
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          disabled={!editMode}
+        />
 
-          {CATEGORY_WITH_PRICE.includes(form.category) && (
-            <>
-              <label>Unit Price (₹)</label>
-              <input
-                type="number"
-                name="unitPrice"
-                value={form.unitPrice}
-                onChange={handleChange}
-                required
-              />
-            </>
-          )}
+        <label>Description</label>
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          disabled={!editMode}
+        />
 
-          {CATEGORY_WITH_CONTACT.includes(form.category) && (
-            <>
-              <label>WhatsApp Business Link</label>
-              <input
-                name="whatsappLink"
-                value={form.whatsappLink}
-                onChange={handleChange}
-                required
-              />
-            </>
-          )}
-          
-          {/*Show existing image as preview*/}
-          {form.imageUrl && (
-            <div style={{ marginBottom: "12px" }}>
-              <p style={{ fontSize: "13px", color: "#6b7280" }}>
-                Current Image
-              </p>
-              <img
-                src={`http://localhost:8080${form.imageUrl}`}
-                alt="Product"
-                style={{
-                  width: "120px",
-                  height: "120px",
-                  objectFit: "cover",
-                  borderRadius: "10px",
-                  border: "1px solid #e5e7eb",
-                }}
-              />
-            </div>
-          )}
-          {/*Show existing image as preview*/}
-          <label>Product Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={e => setImage(e.target.files[0])}
-          />
+        <label>Category</label>
+        <select
+          name="category"
+          value={form.category}
+          onChange={handleChange}
+          disabled={!editMode}
+        >
+          <option value="SPARE_PARTS">Spare Parts</option>
+          <option value="ACCESSORIES">Accessories</option>
+          <option value="OIL">Oil</option>
+          <option value="MOTORS">Motors</option>
+          <option value="SEWING_MACHINE_TOP">Machine Top</option>
+          <option value="STAND">Stand</option>
+          <option value="TABLE">Table</option>
+        </select>
 
+        <label>Stock Quantity</label>
+        <input
+          type="number"
+          name="stockQuantity"
+          value={form.stockQuantity}
+          onChange={handleChange}
+          disabled={!editMode}
+        />
+
+        <label>Restock Threshold</label>
+        <input
+          type="number"
+          name="restockThreshold"
+          value={form.restockThreshold}
+          onChange={handleChange}
+          disabled={!editMode}
+        />
+
+        {CATEGORY_WITH_PRICE.includes(form.category) && (
+          <>
+            <label>Unit Price (₹)</label>
+            <input
+              type="number"
+              name="unitPrice"
+              value={form.unitPrice}
+              onChange={handleChange}
+              disabled={!editMode}
+            />
+          </>
+        )}
+
+        {CATEGORY_WITH_CONTACT.includes(form.category) && (
+          <>
+            <label>WhatsApp Business Link</label>
+            <input
+              name="whatsappLink"
+              value={form.whatsappLink}
+              onChange={handleChange}
+              disabled={!editMode}
+            />
+          </>
+        )}
+
+        {/* IMAGE PREVIEW */}
+        {form.imageUrl && (
+          <div style={{ marginBottom: "14px" }}>
+            <p style={{ fontSize: "13px", color: "#6b7280" }}>
+              Current Image
+            </p>
+            <img
+              src={`http://localhost:8080${form.imageUrl}`}
+              alt="Product"
+              style={{
+                width: "120px",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "10px",
+              }}
+            />
+          </div>
+        )}
+
+        {editMode && (
+          <>
+            <label>Change Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={e => setImage(e.target.files[0])}
+            />
+          </>
+        )}
+
+        {editMode && (
           <button className="admin-primary-btn">
             Update Product
           </button>
-
-        </form>
-      </div>
-    </>
+        )}
+      </form>
+    </div>
   );
 };
 

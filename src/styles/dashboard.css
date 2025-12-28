@@ -12,14 +12,14 @@
 }
 
 .card-title {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text-muted);
   margin-bottom: 8px;
 }
 
 .card-value {
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .card.blue {
@@ -66,3 +66,4 @@
 .card.clickable:active {
   transform: translateY(0);
 }
+

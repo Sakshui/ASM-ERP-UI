@@ -16,6 +16,8 @@ import AdminEditProduct from "./pages/admin/AdminEditProduct";
 import AdminAddSale from "./pages/admin/AdminAddSale";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AppLayout from "./layout/AppLayout";
+import TrackMyRepair from "./pages/customer/TrackMyRepair";
+import MyProfile from "./pages/customer/MyProfile";
 
 
 const HomeRedirect = () => {
@@ -65,14 +67,17 @@ function App() {
         />
         <Route path="/customer/products" element={<ProductCatalog />} />
         
-        <Route
+        {/* <Route
           path="/customer"
           element={
             <ProtectedRoute role="CUSTOMER">
               <MyRepairs />
             </ProtectedRoute>
           }
-        />
+        /> */}
+
+        <Route path="/track-repair" element={<TrackMyRepair />} />
+        <Route path="/profile" element={<MyProfile />} />
 
 
         <Route path="*" element={<Navigate to="/" />} />

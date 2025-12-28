@@ -1,4 +1,3 @@
-import AppLayout from "../../layout/AppLayout";
 import "../../styles/create-repair.css";
 import api from "../../api/axios";
 import { useState } from "react";
@@ -65,7 +64,7 @@ const CreateRepair = () => {
   };
 
   return (
-    <AppLayout>
+    <>
       <div style={{ maxWidth: "1000px", margin: "auto" }}>
 
         <div style={{ marginBottom: "24px" }}>
@@ -245,7 +244,7 @@ const CreateRepair = () => {
 
         </form>
       </div>
-    </AppLayout>
+    </>
   );
 };
 

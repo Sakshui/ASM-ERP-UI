@@ -9,17 +9,33 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // 🔥 CHANGE: email -> identifier
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    await login(identifier, password);
+    if (!identifier || !password) {
+      setError("Please enter both credentials");
+      return;
+    }
 
-    const role = JSON.parse(localStorage.getItem("user")).role;
-    navigate(role === "ADMIN" ? "/admin" : "/customer");
+    try {
+      setLoading(true);
+
+      await login(identifier, password);
+
+      const role = JSON.parse(localStorage.getItem("user")).role;
+      navigate(role === "ADMIN" ? "/admin" : "/customer");
+
+    } catch (err) {
+      setError("Invalid email/mobile number or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,7 +43,6 @@ const Login = () => {
       <div className="card auth-card">
         <h2>Login</h2>
 
-        {/* 🔥 Email OR Mobile Number */}
         <input
           className="input"
           placeholder="Email or Mobile Number"
@@ -43,8 +58,19 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="btn btn-primary" onClick={handleSubmit}>
-          Login
+        {/* ERROR MESSAGE */}
+        {error && (
+          <div className="auth-error" style={{color: '#d82929ff'}}>
+            {error}
+          </div>
+        )}
+
+        <button
+          className="btn btn-primary"
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <p className="auth-footer">

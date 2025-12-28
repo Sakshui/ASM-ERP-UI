@@ -1,0 +1,261 @@
+/* ===== PAGE WRAPPER ===== */
+.customer-repairs-page {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  padding: 56px 24px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  /* Premium layered background */
+  background:
+    radial-gradient(
+      800px circle at 15% 10%,
+      rgba(99, 102, 241, 0.14),
+      transparent 45%
+    ),
+    radial-gradient(
+      700px circle at 85% 15%,
+      rgba(34, 197, 94, 0.12),
+      transparent 50%
+    ),
+    radial-gradient(
+      600px circle at 50% 90%,
+      rgba(236, 72, 153, 0.10),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #f9fafb 0%,
+      #eef2ff 100%
+    );
+}
+
+.customer-repairs-page::before,
+.customer-repairs-page::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.customer-repairs-page::before {
+  background: rgba(99, 102, 241, 0.45);
+  top: -200px;
+  left: -200px;
+}
+
+.customer-repairs-page::after {
+  background: rgba(34, 197, 94, 0.40);
+  bottom: -220px;
+  right: -220px;
+}
+.customer-repairs-page > * {
+  position: relative;
+  z-index: 1;
+}
+.repair-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+
+.customer-repairs-page h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.customer-repairs-page .subtitle {
+  color: #6b7280;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+/* ===== GRID ===== */
+.repair-list {
+  display: grid;
+  gap: 28px;
+  width: 100%;
+}
+
+/* ===== CARD ===== */
+.repair-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.repair-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== HEADER ===== */
+.repair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.repair-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ===== STATUS CHIP ===== */
+.status-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e0f2fe;
+  color: #0369a1;
+  text-transform: uppercase;
+}
+
+/* ===== ISSUE ===== */
+.issue {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 18px;
+}
+
+/* ===== REPAIR TIMELINE ===== */
+.repair-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.repair-timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.repair-timeline-step::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: #e5e7eb;
+  z-index: 0;
+}
+
+.repair-timeline-step:last-child::after {
+  display: none;
+}
+
+.repair-timeline-step.active::after {
+  background: #22c55e;
+}
+
+.repair-timeline-step .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  z-index: 1;
+}
+
+.repair-timeline-step.active .dot {
+  background: #22c55e;
+}
+
+.repair-timeline-step .label {
+  font-size: 11px;
+  margin-top: 6px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.repair-timeline-step.active .label {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* ===== RETURN DATE ===== */
+.return-date {
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.return-date.delayed {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.delay-text {
+  font-weight: 600;
+}
+
+/* ===== FINAL PRICE ===== */
+.final-price {
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* ===== WHATSAPP BUTTON ===== */
+.whatsapp-btn {
+  display: block;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  margin-top: 120px;
+  color: #6b7280;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  display: block;
+  width: 100px;
+  margin: 40px auto 0 auto;
+  padding: 10px 0;
+  background-color: #e0e7ff;
+  color: #3730a3;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
