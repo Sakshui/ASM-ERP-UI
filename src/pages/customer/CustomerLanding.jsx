@@ -51,11 +51,21 @@ const CustomerLanding = () => {
               </button>
 
               {menuOpen && (
-                <div className="menu-dropdown">
-                  <a href="/profile">My Profile</a>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
+              <div className="menu-dropdown">
+
+                {/* MOBILE NAV LINKS */}
+                <a href="#">Home</a>
+                <a href="/customer/products">Products</a>
+                <a href="/track-repair">Repairs</a>
+                <a href="#contact">Contact</a>
+
+                <div className="menu-divider"></div>
+
+                {/* ACCOUNT ACTIONS */}
+                <a href="/profile">My Profile</a>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
             </div>
           )}
         </div>

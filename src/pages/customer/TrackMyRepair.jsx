@@ -76,7 +76,7 @@ const TrackMyRepairs = () => {
               <div className="repair-timeline">
                 {STATUS_STEPS.map((step, idx) => (
                   <div
-                    key={step}
+                    key={`${repair.id}-${step}`}
                     className={`repair-timeline-step ${
                       idx <= currentIndex ? "active" : ""
                     }`}
@@ -110,16 +110,35 @@ const TrackMyRepairs = () => {
                 </div>
               )}
 
-              {/* FINAL PRICE */}
-              {repair.finalPrice && (
-                <p className="final-price">
-                  Final Price: ₹{repair.finalPrice}
-                </p>
+              {/* PRICING DETAILS */}
+              {repair.estimatedPrice && (
+                <div className="pricing-box">
+                  <p className="price-line">
+                    <span>Estimated Price:</span>
+                    <strong>₹{repair.estimatedPrice}</strong>
+                  </p>
+
+                  {repair.finalPrice && (
+                    <p className="price-line final">
+                      <span>Final Price:</span>
+                      <strong>₹{repair.finalPrice}</strong>
+                    </p>
+                  )}
+
+                  {repair.priceNote &&
+                    repair.finalPrice &&
+                    repair.finalPrice !== repair.estimatedPrice && (
+                      <p className="price-note">
+                        <strong>Note:</strong> {repair.priceNote}
+                      </p>
+                    )}
+                </div>
               )}
+
 
               {/* WHATSAPP */}
               <a
-                href={`https://wa.me/91XXXXXXXXXX?text=Hi, I am checking the status of my repair for ${repair.machineName}`}
+                href={`https://wa.me/917517406585?text=Hi, I am checking the status of my repair for ${repair.machineName}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whatsapp-btn"

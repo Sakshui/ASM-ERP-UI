@@ -85,8 +85,8 @@
   color: #111827;
 }
 
-/* WHATSAPP BUTTON */
-.whatsapp-btn {
+/* product-whatsapp BUTTON */
+.product-whatsapp-btn {
   background: #25D366;
   color: #ffffff;
   padding: 8px 14px;
@@ -97,7 +97,7 @@
   transition: background 0.25s ease;
 }
 
-.whatsapp-btn:hover {
+.product-whatsapp-btn:hover {
   background: #1ebe5d;
 }
 .stock-badge {
@@ -119,8 +119,8 @@
   color: #991b1b;
 }
 
-/* WhatsApp button */
-.whatsapp-btn {
+/* product-whatsapp button */
+.product-whatsapp-btn {
   background: #25d366;
   color: white;
   padding: 8px 14px;
@@ -130,7 +130,7 @@
   text-decoration: none;
 }
 
-.whatsapp-btn:hover {
+.product-whatsapp-btn:hover {
   background: #1ebc59;
 }
 /* CATALOG HEADER */
@@ -267,4 +267,37 @@
 
 .ribbon-search::placeholder {
   color: #9ca3af;
+}
+/* ===============================
+   MOBILE: 2-COLUMN PRODUCT GRID
+================================ */
+
+@media (max-width: 768px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* tighter spacing for mobile */
+    padding: 32px 16px 80px;
+  }
+
+  .product-card img {
+    height: 140px; /* reduce height for compact cards */
+  }
+
+  .product-body {
+    padding: 14px;
+  }
+
+  .product-body h3 {
+    font-size: 15px;
+    margin: 6px 0 10px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .product-whatsapp-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }

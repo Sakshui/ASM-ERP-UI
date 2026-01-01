@@ -19,6 +19,9 @@ body {
     );
 }
 
+a {
+  text-decoration: none;
+}
 
 .landing {
   font-family: "Inter", sans-serif;
@@ -46,13 +49,6 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-}
-
-
-.logo {
-  font-weight: 700;
-  font-size: 20px;
-  color: #6c5ce7;
 }
 
 .nav-links {
@@ -643,4 +639,243 @@ body {
   font-size: 12px;
   font-weight: 700;
   z-index: 2;
+}
+
+/* ===============================
+   GLOBAL RESPONSIVE FIXES
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Remove desktop-only left offsets on mobile */
+@media (max-width: 1024px) {
+  .hero-content h1,
+  .hero-content p,
+  .hero-btn,
+  .location-content {
+    margin-left: 0;
+  }
+}
+
+/* ===============================
+   TABLET (≤1024px)
+================================ */
+@media (max-width: 1024px) {
+  .header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .hero-content p {
+    margin: 0 auto 28px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .location-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .location-content p {
+    margin: 0 auto 24px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===============================
+   MOBILE (≤768px)
+================================ */
+@media (max-width: 768px) {
+  /* HEADER */
+  .header-inner {
+    padding: 14px 16px;
+  }
+
+  .menu-icon {
+    padding: 8px 12px;
+    font-size: 18px;
+  }
+
+  /* HERO */
+  .hero-section {
+    padding: 64px 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .hero-btn {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+
+  .hero-visual img {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* EXPERIENCE */
+  .experience-section {
+    padding: 60px 16px;
+  }
+
+  /* SERVICES */
+  .services-section {
+    padding: 64px 16px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .service-card p {
+    max-width: 100%;
+  }
+
+  /* LOCATION */
+  .location-section {
+    padding: 80px 16px;
+  }
+
+  .location-map iframe {
+    height: 280px;
+    border-radius: 16px;
+  }
+
+  .location-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loc-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    padding: 64px 16px 24px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .footer-brand p {
+    margin: 0 auto;
+  }
+  /* ===============================
+   MOBILE: 2-COLUMN PRODUCT GRID
+================================ */
+
+@media (max-width: 768px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* tighter spacing for mobile */
+    padding: 32px 16px 80px;
+  }
+
+  .product-card img {
+    height: 140px; /* reduce height for compact cards */
+  }
+
+  .product-body {
+    padding: 14px;
+  }
+
+  .product-body h3 {
+    font-size: 15px;
+    margin: 6px 0 10px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .product-whatsapp-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  .menu-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 6px 0;
+}
+}
+
+}
+
+/* ===============================
+   SMALL PHONES (≤480px)
+================================ */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .experience-number {
+    font-size: 34px;
+  }
+
+  .location-map iframe {
+    height: 240px;
+  }
+
+  .menu-dropdown {
+    min-width: 140px;
+  }
+}
+/* ===============================
+   MOBILE MENU NAV INTEGRATION
+================================ */
+
+
+
+/* Desktop: hide nav links in menu */
+@media (min-width: 769px) {
+  .menu-dropdown a[href="#"],
+  .menu-dropdown a[href="/customer/products"],
+  .menu-dropdown a[href="/track-repair"],
+  .menu-dropdown a[href="#contact"] {
+    display: none;
+  }
 }

@@ -18,6 +18,8 @@ import AdminUsers from "./pages/admin/AdminUsers";
 import AppLayout from "./layout/AppLayout";
 import TrackMyRepair from "./pages/customer/TrackMyRepair";
 import MyProfile from "./pages/customer/MyProfile";
+import ProductDetail from "./pages/customer/ProductDetail";
+import AdminUserRepairs from "./pages/admin/AdminUserRepairs";
 
 
 const HomeRedirect = () => {
@@ -37,23 +39,28 @@ function App() {
 
         {/* ADMIN */}
         <Route
-    path="/admin"
-    element={
-      <ProtectedRoute role="ADMIN">
-        <AppLayout />
-      </ProtectedRoute>
-    }
-  >
-    <Route index element={<AdminDashboard />} />
-    <Route path="repairs" element={<RepairList />} />
-    <Route path="repairs/new" element={<CreateRepair />} />
-    <Route path="repairs/:id" element={<RepairDetail />} />
-    <Route path="products" element={<AdminProducts />} />
-    <Route path="products/new" element={<AdminAddProduct />} />
-    <Route path="products/:id" element={<AdminEditProduct />} />
-    <Route path="users" element={<AdminUsers />} />
-    <Route path="sales/new" element={<AdminAddSale />} />
-  </Route>
+          path="/admin"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="repairs" element={<RepairList />} />
+          <Route path="repairs/new" element={<CreateRepair />} />
+          <Route path="repairs/:id" element={<RepairDetail />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="products/new" element={<AdminAddProduct />} />
+          <Route path="products/:id" element={<AdminEditProduct />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="sales/new" element={<AdminAddSale />} />
+          <Route
+            path="/admin/users/:userId/repairs"
+            element={<AdminUserRepairs />}
+          />
+
+        </Route>
 
 
         {/* CUSTOMER */}
@@ -66,16 +73,7 @@ function App() {
           }
         />
         <Route path="/customer/products" element={<ProductCatalog />} />
-        
-        {/* <Route
-          path="/customer"
-          element={
-            <ProtectedRoute role="CUSTOMER">
-              <MyRepairs />
-            </ProtectedRoute>
-          }
-        /> */}
-
+        <Route path="/customer/products/:id" element={<ProductDetail />} />
         <Route path="/track-repair" element={<TrackMyRepair />} />
         <Route path="/profile" element={<MyProfile />} />
 

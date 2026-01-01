@@ -49,3 +49,10 @@
   background: #e5e7eb;
   color: #374151;
 }
+.users-page-table-row.clickable {
+  cursor: pointer;
+}
+
+.users-page-table-row.clickable:hover {
+  background: #f1f5f9;
+}

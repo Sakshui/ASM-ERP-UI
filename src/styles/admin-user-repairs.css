@@ -1,0 +1,116 @@
+.user-repairs-page {
+  padding: 32px;
+}
+
+/* HEADER */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.back-btn {
+  background: #2f4f4f;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #263f3f;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f2937;
+}
+
+.page-subtitle {
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* CARDS */
+.repair-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.repair-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* CARD HEADER */
+.repair-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.repair-card-header h3 {
+  font-size: 18px;
+  margin: 0;
+  color: #111827;
+}
+
+/* STATUS */
+.status-badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.status-badge.accepted {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-badge.in_progress {
+  background: #fef9c3;
+  color: #92400e;
+}
+
+.status-badge.repaired {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.returned {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* ISSUE */
+.repair-issue {
+  margin: 8px 0 16px;
+  color: #374151;
+}
+
+/* INFO GRID */
+.repair-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.repair-info-grid .label {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}

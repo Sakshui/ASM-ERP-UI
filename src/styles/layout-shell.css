@@ -3,18 +3,23 @@
 /* ===== APP SHELL ===== */
 .app-shell {
   display: flex;
-  min-height: 100vh;          /* 🔥 FIX: was height: 100vh */
+  min-height: 100vh;
   background: var(--bg-light);
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== SIDEBAR (FIXED) ===== */
 .sidebar {
+  position: fixed;                /* 🔥 FIX */
+  top: 0;
+  left: 0;
+  height: 100vh;
   width: 240px;
   background: var(--primary-dark);
   color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  z-index: 1000;
 }
 
 .sidebar h2 {
@@ -40,14 +45,17 @@
 
 /* ===== MAIN AREA ===== */
 .app-main {
+  margin-left: 240px;             /* 🔥 OFFSET FOR FIXED SIDEBAR */
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;          /* 🔥 ensures full height */
+  min-height: 100vh;
 }
 
 /* ===== TOPBAR ===== */
 .topbar {
+  position: sticky;               /* stays visible on scroll */
+  top: 0;
   height: 72px;
   background: white;
   border-bottom: 1px solid var(--border-light);
@@ -55,12 +63,21 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  flex-shrink: 0;             /* 🔥 prevents shrinking */
+  flex-shrink: 0;
+  z-index: 900;
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTENT (ONLY THIS SCROLLS) ===== */
 .app-content {
-  flex: 1;                    /* 🔥 CRITICAL FIX */
+  flex: 1;
   padding: 24px;
   overflow-y: auto;
+}
+.app-content {
+  padding: 24px;
+}
+
+/* 🔥 FULL BLEED PAGES (Dashboard etc.) */
+.app-content:has(.full-bleed) {
+  padding: 0;
 }

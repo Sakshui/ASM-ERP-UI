@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "../../styles/product-catalog.css";
+import { useNavigate } from "react-router-dom";
 
 const PRICE_CATEGORIES = ["SPARE_PARTS", "ACCESSORIES", "OIL"];
 const CONTACT_CATEGORIES = [
@@ -14,6 +15,7 @@ const ProductCatalog = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -90,7 +92,11 @@ const ProductCatalog = () => {
           })
           .map(product => (
 
-          <div key={product.id} className="product-card">
+          <div
+            key={product.id}
+            className="product-card"
+            onClick={() => navigate(`/customer/products/${product.id}`)}
+          >
 
               <img
                 src={
@@ -136,7 +142,7 @@ const ProductCatalog = () => {
                       href={product.whatsappLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="whatsapp-btn"
+                      className="product-whatsapp-btn"
                     >
                       Chat with Business
                     </a>

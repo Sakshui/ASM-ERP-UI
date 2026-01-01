@@ -2,7 +2,12 @@ import "../../styles/dashboard.css";
 import api from "../../api/axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TriangleAlert } from "lucide-react";
+import {
+  Clock,
+  RotateCcw,
+  PackageMinus,
+  PackageX
+} from "lucide-react";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -19,70 +24,79 @@ const AdminDashboard = () => {
 
   if (!summary) return null;
 
-  // 🔥 FRONTEND DERIVED COUNTS
   const outOfStockCount = products.filter(
     p => p.stockQuantity === 0
   ).length;
 
   return (
-    <>
-      <h1>Dashboard</h1>
+    <div className="dashboard-page full-bleed">
 
+    <div className="dashboard-page">
+
+      {/* HEADER */}
+      <div className="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Quick overview of repairs, returns, and inventory health</p>
+      </div>
+
+      {/* CARDS */}
       <div className="dashboard-grid">
 
-        {/* ACCEPTED */}
         <div
-          className="card clickable"
+          className="dashboard-card pending"
           onClick={() => navigate("/admin/repairs?status=ACCEPTED")}
         >
-          <div className="card-title">Pending Repairs</div>
-          <div className="card-value">{summary.pendingRepairs}</div>
+          <div className="card-icon">
+            <Clock />
+          </div>
+          <div className="card-info">
+            <span>Pending Repairs</span>
+            <strong>{summary.pendingRepairs}</strong>
+          </div>
         </div>
 
-        {/* REPAIRED */}
         <div
-          className="card clickable"
+          className="dashboard-card returned"
           onClick={() => navigate("/admin/repairs?status=REPAIRED")}
         >
-          <div className="card-title">Pending Returns</div>
-          <div className="card-value">{summary.repairedRepairs}</div>
+          <div className="card-icon">
+            <RotateCcw />
+          </div>
+          <div className="card-info">
+            <span>Pending Returns</span>
+            <strong>{summary.repairedRepairs}</strong>
+          </div>
         </div>
 
-        {/* LOW STOCK */}
         <div
-          className="card clickable"
+          className="dashboard-card low"
           onClick={() => navigate("/admin/products?filter=low-stock")}
         >
-          <div className="card-title">Low Stock</div>
-          <div className="card-value">{summary.lowStockProducts}</div>
+          <div className="card-icon">
+            <PackageMinus />
+          </div>
+          <div className="card-info">
+            <span>Low Stock</span>
+            <strong>{summary.lowStockProducts}</strong>
+          </div>
         </div>
 
-        {/* 🔥 OUT OF STOCK (FRONTEND LOGIC) */}
         <div
-          className="card clickable danger"
+          className="dashboard-card danger"
           onClick={() => navigate("/admin/products?filter=out-stock")}
-          style={{ position: "relative" }}
         >
-          <div className="card-title">Out of Stock</div>
-
-          <TriangleAlert
-            size={22}
-            style={{
-              position: "absolute",
-              right: "16px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#dc2626"
-            }}
-          />
-
-          <div className="card-value">
-            {outOfStockCount}
+          <div className="card-icon danger">
+            <PackageX />
+          </div>
+          <div className="card-info">
+            <span>Out of Stock</span>
+            <strong>{outOfStockCount}</strong>
           </div>
         </div>
 
       </div>
-    </>
+    </div>
+    </div>
   );
 };
 

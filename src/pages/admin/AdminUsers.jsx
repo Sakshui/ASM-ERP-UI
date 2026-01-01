@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "../../styles/admin-users.css";
+import { useNavigate } from "react-router-dom";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get("/api/admin/users/customers")
@@ -38,7 +40,11 @@ const AdminUsers = () => {
             </div>
 
             {users.map((user, index) => (
-              <div key={user.id} className="users-page-table-row">
+              <div
+                key={user.id}
+                className="users-page-table-row clickable"
+                onClick={() => navigate(`/admin/users/${user.id}/repairs`)}
+              >
 
                 <span>{index + 1}</span>
 
