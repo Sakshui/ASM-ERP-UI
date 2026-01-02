@@ -13,7 +13,7 @@ const AdminUserRepairs = () => {
 
   useEffect(() => {
     api
-      .get(`/api/repairs/customer/${userId}`)
+      .get(`/api/repairs/admin/customer/${userId}`)
       .then(res => {
         const data = res.data || [];
         setRepairs(data);
@@ -29,7 +29,7 @@ const AdminUserRepairs = () => {
     <div className="user-repairs-page">
 
       {/* HEADER */}
-      <div className="page-header">
+      <div className="pagee-header">
         <h1 className="page-title">
           Repair History
           {customerName && (
@@ -49,62 +49,90 @@ const AdminUserRepairs = () => {
       {!loading && repairs.length > 0 && (
         <div className="repair-cards">
 
-          {repairs.map(repair => (
-            <div key={repair.id} className="repair-card">
+          {repairs.map(repair => {
+            const effectiveFinalPrice =
+              repair.finalPrice != null
+                ? repair.finalPrice
+                : repair.estimatedPrice;
 
-              {/* TOP */}
-              <div className="repair-card-header">
-                <h3>{repair.machineName}</h3>
+            const showPriceNote =
+              repair.finalPrice != null &&
+              repair.estimatedPrice != null &&
+              repair.finalPrice > repair.estimatedPrice &&
+              repair.priceNote;
 
-                <span
-                  className={`status-badge ${repair.status.toLowerCase()}`}
-                >
-                  {repair.status}
-                </span>
+            return (
+              <div key={repair.id} className="repair-card">
+
+                {/* TOP */}
+                <div className="repair-card-header">
+                  <h3>{repair.machineName}</h3>
+
+                  <span
+                    className={`status-badge ${repair.status.toLowerCase()}`}
+                  >
+                    {repair.status}
+                  </span>
+                </div>
+
+                {/* ISSUE */}
+                <p className="repair-issue">
+                  <strong>Issue:</strong> {repair.issueDescription}
+                </p>
+
+                {/* INFO GRID */}
+                <div className="repair-info-grid">
+                  <div>
+                    <span className="label">Estimated Price</span>
+                    <span>₹ {repair.estimatedPrice ?? "—"}</span>
+                  </div>
+
+                  <div>
+                    <span className="label">Final Price</span>
+                    <span>₹ {effectiveFinalPrice ?? "—"}</span>
+                  </div>
+
+                  <div>
+                    <span className="label">Estimated Return</span>
+                    <span>
+                      {repair.estimatedReturnDate
+                        ? new Date(
+                            repair.estimatedReturnDate
+                          ).toLocaleDateString()
+                        : "—"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="label">Accepted At</span>
+                    <span>
+                      {repair.acceptedAt
+                        ? new Date(repair.acceptedAt).toLocaleString()
+                        : "—"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="label">Returned At</span>
+                    <span>
+                      {repair.returnedAt
+                        ? new Date(repair.returnedAt).toLocaleString()
+                        : "—"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* PRICE INCREASE NOTE (ONLY WHEN ACTUALLY INCREASED) */}
+                {showPriceNote && (
+                  <div className="price-note-box">
+                    <strong>Reason for price increase:</strong>
+                    <p>{repair.priceNote}</p>
+                  </div>
+                )}
+
               </div>
-
-              {/* ISSUE */}
-              <p className="repair-issue">
-                <strong>Issue:</strong> {repair.issueDescription}
-              </p>
-
-              {/* INFO GRID */}
-              <div className="repair-info-grid">
-                <div>
-                  <span className="label">Estimated Price</span>
-                  <span>₹ {repair.estimatedPrice ?? "—"}</span>
-                </div>
-
-                <div>
-                  <span className="label">Estimated Return</span>
-                  <span>
-                    {repair.estimatedReturnDate
-                      ? new Date(repair.estimatedReturnDate).toLocaleDateString()
-                      : "—"}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="label">Accepted At</span>
-                  <span>
-                    {repair.acceptedAt
-                      ? new Date(repair.acceptedAt).toLocaleString()
-                      : "—"}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="label">Returned At</span>
-                  <span>
-                    {repair.returnedAt
-                      ? new Date(repair.returnedAt).toLocaleString()
-                      : "—"}
-                  </span>
-                </div>
-              </div>
-
-            </div>
-          ))}
+            );
+          })}
 
         </div>
       )}

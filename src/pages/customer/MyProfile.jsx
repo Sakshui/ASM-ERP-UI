@@ -124,7 +124,7 @@ const MyProfile = () => {
         )}
       </div>
 
-      <button className="back-btn" onClick={() => navigate("/customer")}>
+      <button className="back-btnn" onClick={() => navigate("/customer")}>
         Back
       </button>
     </div>

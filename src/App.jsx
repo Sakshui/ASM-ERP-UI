@@ -4,7 +4,6 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import RepairList from "./pages/admin/RepairList";
 import RepairDetail from "./pages/admin/RepairDetail";
 import CreateRepair from "./pages/admin/CreateRepair";
-import MyRepairs from "./pages/customer/MyRepairs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./auth/AuthContext";
 import Signup from "./pages/Signup";

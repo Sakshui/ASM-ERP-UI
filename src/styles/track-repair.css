@@ -2,118 +2,107 @@
 .customer-repairs-page {
   min-height: 100vh;
   width: 100%;
-  margin: 0 auto;
-  padding: 36px 24px;
+  margin-bottom: 50px;
   box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-
-  /* Premium layered background */
-  background:
-    radial-gradient(
-      800px circle at 15% 10%,
-      rgba(99, 102, 241, 0.14),
-      transparent 45%
-    ),
-    radial-gradient(
-      700px circle at 85% 15%,
-      rgba(34, 197, 94, 0.12),
-      transparent 50%
-    ),
-    radial-gradient(
-      600px circle at 50% 90%,
-      rgba(236, 72, 153, 0.10),
-      transparent 45%
-    ),
-    linear-gradient(
-      180deg,
-      #f9fafb 0%,
-      #eef2ff 100%
-    );
+  background: #f3f1fb;
 }
 
-.customer-repairs-page::before,
-.customer-repairs-page::after {
-  content: "";
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.5;
-  z-index: 0;
+/* ===== CENTER CONTAINER ===== */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
 }
 
-.customer-repairs-page::before {
-  background: rgba(99, 102, 241, 0.45);
-  top: -200px;
-  left: -200px;
+/* ===== HEADER ===== */
+.page-headerr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 90px;
+  background: #ffffff;
+  border-bottom: 1px solid #ebe7f5;
+  margin-bottom: 48px;
 }
 
-.customer-repairs-page::after {
-  background: rgba(34, 197, 94, 0.40);
-  bottom: -220px;
-  right: -220px;
-}
-.customer-repairs-page > * {
-  position: relative;
-  z-index: 1;
-}
-.repair-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+/* ===== HEADER INNER ===== */
+.header-innerr {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+@media (min-width: 1024px) {
+  .header-innerr {
+    padding: 0;
+  }
+}
 
-.customer-repairs-page h1 {
-  font-size: 32px;
+/* ===== BACK BUTTON ===== */
+.back-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #ebe7f5;
+  background: #7c5cff;
+  color: #ffffff;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 6px;
+  cursor: pointer;
 }
 
-.customer-repairs-page .subtitle {
-  color: #6b7280;
-  margin-bottom: 32px;
-  font-size: 15px;
+/* ===== HEADER TEXT ===== */
+.header-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #2b2740;
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #8a85a6;
 }
 
 /* ===== GRID ===== */
 .repair-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
-  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .repair-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== CARD ===== */
 .repair-card {
   background: #ffffff;
   border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 26px;
+  border: 1px solid #ebe7f5;
+  box-shadow: 0 10px 28px rgba(124, 92, 255, 0.12);
 }
 
-.repair-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
-}
-
-/* ===== HEADER ===== */
+/* ===== CARD HEADER ===== */
 .repair-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
 }
 
 .repair-header h3 {
   font-size: 18px;
   font-weight: 600;
+  color: #2b2740;
 }
 
 /* ===== STATUS CHIP ===== */
@@ -122,23 +111,23 @@
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
-  background: #e0f2fe;
-  color: #0369a1;
+  background: #ede9ff;
+  color: #7c5cff;
   text-transform: uppercase;
 }
 
 /* ===== ISSUE ===== */
 .issue {
   font-size: 14px;
-  color: #374151;
-  margin-bottom: 18px;
+  color: #8a85a6;
+  margin: 16px 0;
 }
 
-/* ===== REPAIR TIMELINE ===== */
+/* ===== TIMELINE ===== */
 .repair-timeline {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 22px 0;
   position: relative;
 }
 
@@ -157,8 +146,7 @@
   right: -50%;
   width: 100%;
   height: 2px;
-  background: #e5e7eb;
-  z-index: 0;
+  background: #ebe7f5;
 }
 
 .repair-timeline-step:last-child::after {
@@ -166,102 +154,41 @@
 }
 
 .repair-timeline-step.active::after {
-  background: #22c55e;
+  background: #7c5cff;
 }
 
-.repair-timeline-step .dot {
+.dot {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #e5e7eb;
+  background: #ebe7f5;
   z-index: 1;
 }
 
 .repair-timeline-step.active .dot {
-  background: #22c55e;
+  background: #7c5cff;
 }
 
-.repair-timeline-step .label {
+.label {
   font-size: 11px;
   margin-top: 6px;
-  color: #6b7280;
-  text-align: center;
+  color: #8a85a6;
 }
 
-.repair-timeline-step.active .label {
-  color: #16a34a;
-  font-weight: 600;
-}
-
-/* ===== RETURN DATE ===== */
+/* ===== INFO BOXES ===== */
 .return-date {
-  background: #f8fafc;
+  background: #f7f6fc;
   padding: 12px 14px;
   border-radius: 12px;
-  font-size: 14px;
-  margin-bottom: 14px;
   display: flex;
   justify-content: space-between;
-}
-
-.return-date.delayed {
-  background: #fff7ed;
-  color: #c2410c;
-}
-
-.delay-text {
-  font-weight: 600;
-}
-
-/* ===== FINAL PRICE ===== */
-.final-price {
-  font-weight: 600;
+  font-size: 14px;
   margin-bottom: 14px;
+  color: #2b2740;
 }
 
-/* ===== WHATSAPP BUTTON ===== */
-.whatsapp-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: white;
-  padding: 14px;
-  border-radius: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.whatsapp-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
-}
-
-/* ===== EMPTY STATE ===== */
-.empty-state {
-  text-align: center;
-  margin-top: 120px;
-  color: #6b7280;
-}
-
-/* ===== BACK BUTTON ===== */
-.back-btn {
-  display: block;
-  width: 100px;
-  margin: 40px auto 0 auto;
-  padding: 10px 0;
-  background-color: #e0e7ff;
-  color: #3730a3;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-/* ===== PRICING BOX ===== */
 .pricing-box {
-  background: #f8fafc;
+  background: #f7f6fc;
   border-radius: 12px;
   padding: 12px 14px;
   margin-bottom: 14px;
@@ -271,20 +198,23 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #374151;
   margin-bottom: 6px;
+  color: #2b2740;
 }
 
 .price-line.final {
   font-weight: 600;
-  color: #111827;
 }
 
-.price-note {
-  font-size: 13px;
-  color: #92400e;
-  background: #fef3c7;
-  padding: 8px 10px;
-  border-radius: 8px;
-  margin-top: 8px;
+/* ===== CTA BUTTON ===== */
+.whatsapp-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #7c5cff;
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
 }

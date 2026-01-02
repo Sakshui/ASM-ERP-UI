@@ -13,19 +13,22 @@ const CATEGORIES = [
   "TABLE",
 ];
 
+const ITEMS_PER_PAGE = 5; // 🔹 change if needed
+
 const AdminProducts = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // URL filter from dashboard
-  const urlFilter = searchParams.get("filter"); // low-stock | out-stock
+  const urlFilter = searchParams.get("filter");
 
-  // Local filters
   const [stockFilter, setStockFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // 🔹 pagination state
+  const [currentPage, setCurrentPage] = useState(1);
 
   // FETCH PRODUCTS
   useEffect(() => {
@@ -46,8 +49,13 @@ const AdminProducts = () => {
     }
   }, [urlFilter]);
 
-  // FILTER LOGIC (FIXED LOW STOCK)
-  const displayedProducts = useMemo(() => {
+  // RESET PAGE WHEN FILTER CHANGES
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [stockFilter, categoryFilter]);
+
+  // FILTER LOGIC
+  const filteredProducts = useMemo(() => {
     let list = [...products];
 
     if (categoryFilter) {
@@ -60,20 +68,29 @@ const AdminProducts = () => {
       );
     }
 
-    // ✅ LOW STOCK = needsRestock BUT quantity > 0
     if (stockFilter === "LOW") {
       list = list.filter(
         p => p.stockQuantity > 0 && p.needsRestock
       );
     }
 
-    // ✅ OUT OF STOCK ONLY
     if (stockFilter === "OUT") {
       list = list.filter(p => p.stockQuantity === 0);
     }
 
     return list;
   }, [products, stockFilter, categoryFilter]);
+
+  // PAGINATION CALCULATION
+  const totalPages = Math.ceil(
+    filteredProducts.length / ITEMS_PER_PAGE
+  );
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, end);
+  }, [filteredProducts, currentPage]);
 
   return (
     <div className="products-page">
@@ -124,76 +141,107 @@ const AdminProducts = () => {
 
       {loading && <p>Loading products...</p>}
 
-      {!loading && displayedProducts.length === 0 && (
+      {!loading && filteredProducts.length === 0 && (
         <div className="empty-state">
           <p>No products found.</p>
         </div>
       )}
 
-      {!loading && displayedProducts.length > 0 && (
-        <div className="products-table">
-          <div className="table-header">
-            <span>Product</span>
-            <span>Category</span>
-            <span>Price / Contact</span>
-            <span>Stock</span>
-            <span>Status</span>
+      {!loading && paginatedProducts.length > 0 && (
+        <>
+          <div className="products-table">
+            <div className="table-header">
+              <span>Product</span>
+              <span>Category</span>
+              <span>Price / Contact</span>
+              <span>Stock</span>
+              <span>Status</span>
+            </div>
+
+            {paginatedProducts.map(product => (
+              <div
+                key={product.id}
+                className={`table-row clickable-row ${
+                  product.stockQuantity === 0
+                    ? "out-stock"
+                    : product.needsRestock
+                    ? "low-stock"
+                    : ""
+                }`}
+                onClick={() =>
+                  navigate(`/admin/products/${product.id}`)
+                }
+              >
+                <div className="product-cell">
+                  <img
+                    src={
+                      product.imageUrl
+                        ? `http://localhost:8080${product.imageUrl}`
+                        : "/placeholder.png"
+                    }
+                    alt={product.name}
+                  />
+                  <span>{product.name}</span>
+                </div>
+
+                <span>{product.category.replaceAll("_", " ")}</span>
+
+                {product.unitPrice && product.unitPrice > 0 ? (
+                  <span>₹ {product.unitPrice}</span>
+                ) : (
+                  <a
+                    href={product.whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="whatsapp-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Contact
+                  </a>
+                )}
+
+                <span>{product.stockQuantity}</span>
+
+                {product.stockQuantity === 0 ? (
+                  <span className="badge danger">Out of Stock</span>
+                ) : product.needsRestock ? (
+                  <span className="badge warning">Low Stock</span>
+                ) : (
+                  <span className="badge success">In Stock</span>
+                )}
+              </div>
+            ))}
           </div>
 
-          {displayedProducts.map(product => (
-            <div
-              key={product.id}
-              className={`table-row clickable-row ${
-                product.stockQuantity === 0
-                  ? "out-stock"
-                  : product.needsRestock
-                  ? "low-stock"
-                  : ""
-              }`}
-              onClick={() =>
-                navigate(`/admin/products/${product.id}`)
-              }
-            >
-              <div className="product-cell">
-                <img
-                  src={
-                    product.imageUrl
-                      ? `http://localhost:8080${product.imageUrl}`
-                      : "/placeholder.png"
-                  }
-                  alt={product.name}
-                />
-                <span>{product.name}</span>
-              </div>
+          {/* PAGINATION */}
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(p => p - 1)}
+              >
+                Prev
+              </button>
 
-              <span>{product.category.replaceAll("_", " ")}</span>
-
-              {product.unitPrice && product.unitPrice > 0 ? (
-                <span>₹ {product.unitPrice}</span>
-              ) : (
-                <a
-                  href={product.whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="whatsapp-link"
-                  onClick={(e) => e.stopPropagation()}
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i}
+                  className={currentPage === i + 1 ? "active" : ""}
+                  onClick={() => setCurrentPage(i + 1)}
                 >
-                  Contact
-                </a>
-              )}
+                  {i + 1}
+                </button>
+              ))}
 
-              <span>{product.stockQuantity}</span>
-
-              {product.stockQuantity === 0 ? (
-                <span className="badge danger">Out of Stock</span>
-              ) : product.needsRestock ? (
-                <span className="badge warning">Low Stock</span>
-              ) : (
-                <span className="badge success">In Stock</span>
-              )}
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(p => p + 1)}
+              >
+                Next
+              </button>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -88,6 +88,16 @@
 .table-row.low-stock {
   background: #fff7ed;
 }
+/* LOW STOCK ROW */
+.table-row.low-stock {
+  background: #fff7ed; /* soft amber */
+}
+
+/* OUT OF STOCK ROW */
+.table-row.out-stock {
+  background: #fef2f2; /* soft red */
+}
+
 
 /* PRODUCT CELL */
 .product-cell {
