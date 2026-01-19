@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://acharekar-sewing-machine.onrender.com",
 });
 
 /* ===== REQUEST INTERCEPTOR ===== */
@@ -20,8 +20,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401 || error.response.status === 403) {
-      // 🔥 JWT expired or invalid
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      // JWT expired or invalid
       localStorage.removeItem("token");
 
       // prevent redirect loop
